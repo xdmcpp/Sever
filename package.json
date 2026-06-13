@@ -1,0 +1,11 @@
+{
+  "name": "server-setup",
+  "version": "1.0.0",
+  "description": "一键搭建本地服务器 - 新手友好",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["server", "static", "http"],
+  "license": "MIT"
+}

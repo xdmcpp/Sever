@@ -3,364 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C++基础语法学习网站</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>一键服务器搭建 - 新手教程</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-    <!-- 导航栏 -->
-    <nav class="bg-blue-600 dark:bg-blue-800 text-white shadow-md fixed w-full z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xl font-bold flex items-center">
-                    <i class="fas fa-code mr-2"></i>
-                    <span>C++学习站</span>
-                </a>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🖥️</span>
+                <span class="logo-text">一键搭建</span>
             </div>
-            
-            <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="font-medium hover:text-blue-200 transition-colors duration-200 border-b-2 border-white">首页</a>
-                <a href="learning.html" class="font-medium hover:text-blue-200 transition-colors duration-200">语法学习</a>
-                <a href="compiler.html" class="font-medium hover:text-blue-200 transition-colors duration-200">在线编译器</a>
-                <a href="notes.html" class="font-medium hover:text-blue-200 transition-colors duration-200">学习笔记</a>
-                <a href="faq.html" class="font-medium hover:text-blue-200 transition-colors duration-200">常见问题</a>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-blue-700 transition-colors duration-200">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block"></i>
-                </button>
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- 移动端菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-blue-700 dark:bg-blue-900">
-            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
-                <a href="index.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">首页</a>
-                <a href="learning.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">语法学习</a>
-                <a href="compiler.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">在线编译器</a>
-                <a href="notes.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">学习笔记</a>
-                <a href="faq.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">常见问题</a>
-            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active" data-page="home">首页</a></li>
+                <li><a href="#tutorial" class="nav-link" data-page="tutorial">教程</a></li>
+                <li><a href="#help" class="nav-link" data-page="help">帮助</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- 主要内容 -->
-    <main class="container mx-auto px-4 pt-24 pb-12">
-        <!-- 欢迎区域 -->
-        <section class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">欢迎来到C++基础语法学习站</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                从零开始学习C++编程，掌握核心语法，在线编写和运行代码，无需配置复杂的开发环境。
-            </p>
-        </section>
+    <!-- 首页 - 主控面板 -->
+    <section id="home" class="page active">
+        <!-- Node.js 提示横幅 -->
+        <div class="node-notice" id="node-notice">
+            <span class="node-notice-icon">⚠️</span>
+            <span class="node-notice-text">首次使用需先 <a href="https://nodejs.org/" target="_blank">安装 Node.js</a>，安装后在终端运行 <code>node server.js</code> 启动本工具。<a href="#" onclick="switchToTutorial(); return false;">更多请查看教程页面</a></span>
+            <button class="node-notice-close" onclick="closeNodeNotice()">✕</button>
+        </div>
 
-        <!-- 功能卡片区域 -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <!-- 语法学习卡片 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                <div class="bg-blue-500 h-2"></div>
-                <div class="p-6">
-                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-book text-blue-600 dark:text-blue-400 text-2xl"></i>
+        <div class="hero">
+            <div class="hero-title">一键搭建本地服务器</div>
+            <div class="hero-subtitle">选择文件夹 → 设置端口 → 点击启动，三步搞定</div>
+            <div class="hero-decoration">✨</div>
+        </div>
+
+        <!-- 统一配置面板 -->
+        <div class="control-panel">
+            <div class="panel-header">
+                <span class="panel-icon">⚙️</span>
+                <span class="panel-title">服务器配置</span>
+            </div>
+
+            <!-- 主要配置 -->
+            <div class="config-grid">
+                <div class="config-card">
+                    <div class="config-label">📁 项目文件夹</div>
+                    <div class="folder-picker">
+                        <span id="folder-display" class="folder-display">未选择文件夹</span>
+                        <input type="file" id="folder-input" webkitdirectory directory multiple hidden>
+                        <button class="btn-picker" onclick="document.getElementById('folder-input').click()">浏览</button>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2">系统学习C++语法</h2>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                        按知识点分类学习C++基础语法，包含详细讲解、示例代码和练习题。
-                    </p>
-                    <a href="learning.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                        开始学习 <i class="fas fa-arrow-right ml-1"></i>
-                    </a>
+                    <div class="file-info" id="file-info" style="display: none;">
+                        <span class="file-info-icon">📄</span>
+                        <span>已识别 <strong id="file-count">0</strong> 个文件</span>
+                    </div>
+                </div>
+
+                <div class="config-card">
+                    <div class="config-label">⚡ 端口设置</div>
+                    <div class="port-row">
+                        <input type="number" id="port-input" class="port-input" value="3000" min="1" max="65535" maxlength="5" placeholder="如 3000">
+                        <button class="btn-picker" onclick="checkPort()">检测</button>
+                    </div>
+                    <div class="port-status" id="port-status">
+                        <span class="status-hint">点击"检测"查看端口是否可用</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- 在线编译器卡片 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                <div class="bg-green-500 h-2"></div>
-                <div class="p-6">
-                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-terminal text-green-600 dark:text-green-400 text-2xl"></i>
+            <!-- 次要配置 -->
+            <div class="config-grid">
+                <div class="config-card">
+                    <div class="config-label">🌐 主机地址</div>
+                    <select id="host-select" class="host-select">
+                        <option value="localhost">localhost（本地访问）</option>
+                        <option value="127.0.0.1">127.0.0.1（本地访问）</option>
+                        <option value="0.0.0.0">0.0.0.0（局域网访问）</option>
+                    </select>
+                    <div class="hint-text">局域网：同一 WiFi 下手机/电脑都能访问</div>
+                </div>
+
+                <div class="config-card">
+                    <div class="config-label">✨ 高级选项</div>
+                    <div class="checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="auto-open" checked>
+                            <span>自动打开浏览器</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hot-reload" checked>
+                            <span>热更新（自动刷新）</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="show-logs">
+                            <span>显示日志（调试）</span>
+                        </label>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2">在线编写和运行代码</h2>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                        无需安装编译器，直接在浏览器中编写、编译和运行C++代码，即时查看结果。
-                    </p>
-                    <a href="compiler.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                        立即尝试 <i class="fas fa-play ml-1"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- 学习进度卡片 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                <div class="bg-purple-500 h-2"></div>
-                <div class="p-6">
-                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-chart-line text-purple-600 dark:text-purple-400 text-2xl"></i>
+            <!-- 状态显示 -->
+            <div class="status-card">
+                <div class="status-row">
+                    <div class="status-label">服务器状态</div>
+                    <div class="status-value">
+                        <span class="status-dot status-dot-off" id="status-dot"></span>
+                        <span id="server-status">未启动</span>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2">追踪学习进度</h2>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                        记录已学习的知识点和完成的练习，查看学习进度，保持学习动力。
-                    </p>
-                    <div class="bg-gray-100 dark:bg-gray-700 rounded-full h-4 mb-4">
-                        <div id="progress-bar" class="bg-purple-600 h-4 rounded-full" style="width: 0%"></div>
+                </div>
+                <div class="status-row">
+                    <div class="status-label">访问地址</div>
+                    <div class="status-value">
+                        <span id="server-url">等待启动...</span>
+                        <button class="btn-mini" id="open-browser" onclick="openBrowser()" style="display:none;">打开</button>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-gray-400" id="progress-text">
-                        尚未开始学习
-                    </p>
+                </div>
+                <div class="status-row">
+                    <div class="status-label">运行时间</div>
+                    <div class="status-value">
+                        <span id="runtime">--:--:--</span>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- 学习路径区域 -->
-        <section class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">C++学习路径</h2>
-            
-            <div class="relative">
-                <!-- 路径线 -->
-                <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                
-                <!-- 路径步骤 -->
-                <div class="space-y-8">
-                    <!-- 步骤1 -->
-                    <div class="flex">
-                        <div class="relative">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
-                                1
-                            </div>
-                        </div>
-                        <div class="ml-6">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">C++基础入门</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">
-                                了解C++的历史、特点和应用场景，学习基本的程序结构和语法规则。
-                            </p>
-                            <a href="learning.html#basics" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤2 -->
-                    <div class="flex">
-                        <div class="relative">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
-                                2
-                            </div>
-                        </div>
-                        <div class="ml-6">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">变量、数据类型与运算符</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">
-                                学习C++中的变量声明和使用，基本数据类型，以及各种运算符的使用方法。
-                            </p>
-                            <a href="learning.html#variables" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤3 -->
-                    <div class="flex">
-                        <div class="relative">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
-                                3
-                            </div>
-                        </div>
-                        <div class="ml-6">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">流程控制</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">
-                                掌握条件语句（if-else）、循环语句（for、while、do-while）和跳转语句（break、continue、goto）。
-                            </p>
-                            <a href="learning.html#control-flow" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤4 -->
-                    <div class="flex">
-                        <div class="relative">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
-                                4
-                            </div>
-                        </div>
-                        <div class="ml-6">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">函数</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">
-                                学习函数的定义、声明、调用，以及函数参数、返回值、函数重载等概念。
-                            </p>
-                            <a href="learning.html#functions" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤5 -->
-                    <div class="flex">
-                        <div class="relative">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
-                                5
-                            </div>
-                        </div>
-                        <div class="ml-6">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">数组与指针</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">
-                                掌握数组的定义和使用，指针的概念、声明和操作，以及数组与指针的关系。
-                            </p>
-                            <a href="learning.html#arrays-pointers" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- 步骤6 -->
-                    <div class="flex">
-                        <div class="relative">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
-                                6
-                            </div>
-                        </div>
-                        <div class="ml-6">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">类与对象</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">
-                                学习面向对象编程的基本概念，包括类的定义、对象的创建和使用、构造函数和析构函数等。
-                            </p>
-                            <a href="learning.html#classes-objects" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 特色功能区域 -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">特色功能</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 特色1 -->
-                <div class="flex">
-                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-blue-600 dark:text-blue-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">在线编译器</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            直接在浏览器中编写、编译和运行C++代码，无需安装任何软件，即时查看执行结果。
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- 特色2 -->
-                <div class="flex">
-                    <div class="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
-                        <i class="fas fa-book-open text-green-600 dark:text-green-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">系统学习路径</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            提供结构化的学习路径，从基础到进阶，循序渐进地学习C++编程知识。
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- 特色3 -->
-                <div class="flex">
-                    <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                        <i class="fas fa-pencil-alt text-purple-600 dark:text-purple-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">学习笔记</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            记录学习心得和重要知识点，方便复习和巩固所学内容。
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- 特色4 -->
-                <div class="flex">
-                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center">
-                        <i class="fas fa-question-circle text-yellow-600 dark:text-yellow-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">常见问题解答</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            收集和解答C++学习过程中的常见问题，帮助快速解决学习中遇到的困难。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 快速开始区域 -->
-        <section class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-8 text-white text-center">
-            <h2 class="text-2xl font-bold mb-4">准备好开始学习C++了吗？</h2>
-            <p class="mb-6 max-w-2xl mx-auto">
-                无论你是完全的编程初学者，还是想要学习C++的其他语言开发者，我们都能帮助你快速掌握C++编程技能。
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="learning.html" class="bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-6 rounded-md transition-colors duration-200 flex items-center justify-center">
-                    <i class="fas fa-book mr-2"></i> 开始学习
-                </a>
-                <a href="compiler.html" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md transition-colors duration-200 flex items-center justify-center border border-white">
-                    <i class="fas fa-play mr-2"></i> 尝试编译器
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 关于我们 -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">关于我们</h3>
-                    <p class="text-gray-400">
-                        C++学习站致力于为初学者提供高质量的C++编程学习资源，帮助更多人掌握编程技能。
-                    </p>
-                </div>
-                
-                <!-- 快速链接 -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">首页</a></li>
-                        <li><a href="learning.html" class="text-gray-400 hover:text-white transition-colors duration-200">语法学习</a></li>
-                        <li><a href="compiler.html" class="text-gray-400 hover:text-white transition-colors duration-200">在线编译器</a></li>
-                        <li><a href="notes.html" class="text-gray-400 hover:text-white transition-colors duration-200">学习笔记</a></li>
-                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors duration-200">常见问题</a></li>
-                    </ul>
-                </div>
-                
-                <!-- 联系方式 -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">联系方式</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
-                            <a href="mailto:contact@cpplearning.com" class="text-gray-400 hover:text-white transition-colors duration-200">contact@cpplearning.com</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-github mr-2 text-gray-400"></i>
-                            <a href="https://github.com/cpplearning" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200">GitHub</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2025 C++学习站. 保留所有权利.</p>
+            <!-- 操作按钮 -->
+            <div class="action-row">
+                <button class="btn-action btn-primary" id="start-btn" onclick="toggleServer()">
+                    <span class="btn-icon">🚀</span>
+                    <span>启动服务器</span>
+                </button>
+                <button class="btn-action btn-secondary" onclick="resetConfig()">
+                    <span class="btn-icon">🔄</span>
+                    <span>重置配置</span>
+                </button>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <!-- 教程页面 -->
+    <section id="tutorial" class="page">
+        <div class="tutorial-container">
+            <div class="page-header">
+                <div class="page-title">📚 搭建教程</div>
+                <div class="page-subtitle">跟着步骤，轻松搞定</div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>安装 Node.js</h3>
+                    <p>如果没有安装 Node.js，请先 <a href="https://nodejs.org/" target="_blank" style="color:#667eea;">点击下载安装</a>（推荐 LTS 版本）</p>
+                    <div class="code-block">
+                        <code>node --version  # 检查是否安装成功</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tutorial-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>启动本工具</h3>
+                    <p>打开终端，进入本工具所在目录，运行：</p>
+                    <div class="code-block">
+                        <code>node server.js</code>
+                    </div>
+                    <p style="margin-top: 8px;">然后在浏览器访问显示的地址（默认 <code>http://localhost:3001</code>）</p>
+                </div>
+            </div>
+
+            <div class="tutorial-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>选择项目文件夹</h3>
+                    <p>在页面点击"浏览"按钮，选择你要托管的项目文件夹（含 HTML/CSS/JS 文件）</p>
+                </div>
+            </div>
+
+            <div class="tutorial-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>设置端口并启动</h3>
+                    <p>设置端口号（默认 3000），点击"检测"确认可用后，点击"启动服务器"</p>
+                </div>
+            </div>
+
+            <div class="tutorial-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>访问网站</h3>
+                    <p>浏览器会自动打开，或手动复制访问地址。局域网访问选 <code>0.0.0.0</code>，手机同一 WiFi 下访问 <code>http://你的电脑IP:端口</code></p>
+                </div>
+            </div>
+
+            <div class="tutorial-note">
+                <h4>💡 温馨提示</h4>
+                <p>启用"热更新（自动刷新）"后，修改代码保存时浏览器会自动刷新，无需手动重启服务器。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 帮助页面 -->
+    <section id="help" class="page">
+        <div class="help-container">
+            <div class="page-header">
+                <div class="page-title">❓ 帮助中心</div>
+                <div class="page-subtitle">常见问题，一一解答</div>
+            </div>
+
+            <div class="faq-section">
+                <h3>常见问题</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 页面打不开或按钮无反应？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>本工具需要通过 Node.js 启动才能使用。在工具目录下打开终端，运行：</p>
+                        <div class="code-block">
+                            <code>node server.js</code>
+                        </div>
+                        <p style="margin-top: 8px;">然后访问终端中显示的地址（默认 <code>http://localhost:3001</code>）。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 端口被占用怎么办？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>方法1：直接在端口输入框修改为其他端口（如 3001、8080）<br>
+                        方法2：在 Windows 任务管理器中结束占用端口的进程<br>
+                        方法3：打开命令行执行以下命令查找并关闭占用进程：</p>
+                        <div class="code-block">
+                            <code>netstat -ano | findstr :3000</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 启动后浏览器看不到内容？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>请确保您的文件夹中有 <code>index.html</code> 文件，这是默认的首页文件。<br>
+                        若没有，请创建一个 index.html 或在文件列表中手动选择入口文件。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 局域网访问不了？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>1. 确保主机地址选择了 0.0.0.0<br>
+                        2. 确保两台设备连接在同一 WiFi 下<br>
+                        3. Windows 防火墙可能会拦截，尝试关闭防火墙测试<br>
+                        4. 访问地址格式：<code>http://您的IP:端口</code></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 如何停止服务器？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>直接点击首页的"停止服务器"按钮即可，无需关闭窗口。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 支持哪些文件类型？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>默认支持：HTML、CSS、JavaScript、图片、JSON、字体文件等所有静态文件。<br>
+                        如需支持 Vue/React/TypeScript 等需要编译的框架，请先打包生成静态文件。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 文件夹选择后提示什么？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>选择文件夹后，系统会自动扫描并统计文件夹内的文件数量，<br>
+                        如果检测到 index.html 会自动标记为入口文件。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Q: 修改代码后需要重启吗？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>不需要！只要勾选了"热更新（自动刷新）"选项，修改代码保存时浏览器会自动刷新。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3>📞 联系我们</h3>
+                <p>如果还有其他问题，欢迎通过以下方式联系我们：</p>
+                <div class="contact-item">
+                    <span>邮箱：</span>
+                    <a href="mailto:xdm_noodles@qq.com">xdm_noodles@qq.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">提示</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">关闭</button>
+                <button class="btn-primary" id="modal-confirm" onclick="confirmModal()">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
