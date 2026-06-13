@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习笔记 - C++基础语法学习网站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <nav class="bg-blue-600 dark:bg-blue-800 text-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xl font-bold flex items-center">
+                    <i class="fas fa-code mr-2"></i>
+                    <span>C++学习站</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="font-medium hover:text-blue-200 transition-colors duration-200">首页</a>
+                <a href="learning.html" class="font-medium hover:text-blue-200 transition-colors duration-200">语法学习</a>
+                <a href="compiler.html" class="font-medium hover:text-blue-200 transition-colors duration-200">在线编译器</a>
+                <a href="notes.html" class="font-medium hover:text-blue-200 transition-colors duration-200 border-b-2 border-white">学习笔记</a>
+                <a href="faq.html" class="font-medium hover:text-blue-200 transition-colors duration-200">常见问题</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-blue-700 dark:bg-blue-900">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="index.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">首页</a>
+                <a href="learning.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">语法学习</a>
+                <a href="compiler.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">在线编译器</a>
+                <a href="notes.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">学习笔记</a>
+                <a href="faq.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">常见问题</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <!-- 页面标题 -->
+        <section class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">学习笔记</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                记录你的学习心得和重要知识点，方便复习和巩固所学内容。
+            </p>
+        </section>
+
+        <!-- 添加笔记表单 -->
+        <section class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">添加笔记</h2>
+            
+            <form id="note-form" class="space-y-4">
+                <input type="hidden" id="note-id" value="">
+                
+                <div class="form-group">
+                    <label for="note-title" class="form-label text-gray-700 dark:text-gray-300">标题</label>
+                    <input type="text" id="note-title" class="form-control" placeholder="输入笔记标题" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="note-content" class="form-label text-gray-700 dark:text-gray-300">内容</label>
+                    <textarea id="note-content" class="form-control" rows="6" placeholder="输入笔记内容" required></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="cancel-note-btn" class="btn btn-outline">取消</button>
+                    <button type="submit" id="save-note-btn" class="btn btn-primary">添加笔记</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 笔记列表 -->
+        <section class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white">我的笔记</h2>
+                
+                <div class="flex items-center">
+                    <label for="notes-search" class="mr-2 text-gray-700 dark:text-gray-300">搜索:</label>
+                    <input type="text" id="notes-search" class="form-control py-1 px-2 text-sm" placeholder="搜索笔记...">
+                </div>
+            </div>
+            
+            <div id="notes-list" class="space-y-4">
+                <!-- 笔记将通过JavaScript动态加载 -->
+                <div class="text-center py-8 text-gray-500">暂无笔记，点击上方按钮添加</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 关于我们 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">关于我们</h3>
+                    <p class="text-gray-400">
+                        C++学习站致力于为初学者提供高质量的C++编程学习资源，帮助更多人掌握编程技能。
+                    </p>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">首页</a></li>
+                        <li><a href="learning.html" class="text-gray-400 hover:text-white transition-colors duration-200">语法学习</a></li>
+                        <li><a href="compiler.html" class="text-gray-400 hover:text-white transition-colors duration-200">在线编译器</a></li>
+                        <li><a href="notes.html" class="text-gray-400 hover:text-white transition-colors duration-200">学习笔记</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors duration-200">常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 联系方式 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">联系方式</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <a href="mailto:contact@cpplearning.com" class="text-gray-400 hover:text-white transition-colors duration-200">contact@cpplearning.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-github mr-2 text-gray-400"></i>
+                            <a href="https://github.com/cpplearning" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200">GitHub</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 C++学习站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // 页面加载完成后初始化笔记功能
+        document.addEventListener('DOMContentLoaded', () => {
+            // 初始化笔记功能
+            initNotes();
+            
+            // 笔记搜索功能
+            const notesSearch = document.getElementById('notes-search');
+            const notesList = document.getElementById('notes-list');
+            
+            if (notesSearch && notesList) {
+                notesSearch.addEventListener('input', () => {
+                    const searchTerm = notesSearch.value.toLowerCase().trim();
+                    const noteElements = notesList.querySelectorAll('.bg-white.dark\\:bg-gray-800');
+                    
+                    if (searchTerm === '') {
+                        // 如果搜索词为空，显示所有笔记
+                        noteElements.forEach(note => {
+                            note.style.display = 'block';
+                        });
+                        return;
+                    }
+                    
+                    // 搜索笔记标题和内容
+                    noteElements.forEach(note => {
+                        const title = note.querySelector('h3').textContent.toLowerCase();
+                        const content = note.querySelector('p').textContent.toLowerCase();
+                        
+                        if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                            note.style.display = 'block';
+                        } else {
+                            note.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

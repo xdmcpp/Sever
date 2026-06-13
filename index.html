@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++基础语法学习网站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <nav class="bg-blue-600 dark:bg-blue-800 text-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xl font-bold flex items-center">
+                    <i class="fas fa-code mr-2"></i>
+                    <span>C++学习站</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="font-medium hover:text-blue-200 transition-colors duration-200 border-b-2 border-white">首页</a>
+                <a href="learning.html" class="font-medium hover:text-blue-200 transition-colors duration-200">语法学习</a>
+                <a href="compiler.html" class="font-medium hover:text-blue-200 transition-colors duration-200">在线编译器</a>
+                <a href="notes.html" class="font-medium hover:text-blue-200 transition-colors duration-200">学习笔记</a>
+                <a href="faq.html" class="font-medium hover:text-blue-200 transition-colors duration-200">常见问题</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-blue-700 dark:bg-blue-900">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="index.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">首页</a>
+                <a href="learning.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">语法学习</a>
+                <a href="compiler.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">在线编译器</a>
+                <a href="notes.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">学习笔记</a>
+                <a href="faq.html" class="py-2 px-4 hover:bg-blue-800 dark:hover:bg-blue-950 rounded-md transition-colors duration-200">常见问题</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <!-- 欢迎区域 -->
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">欢迎来到C++基础语法学习站</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                从零开始学习C++编程，掌握核心语法，在线编写和运行代码，无需配置复杂的开发环境。
+            </p>
+        </section>
+
+        <!-- 功能卡片区域 -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- 语法学习卡片 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-blue-500 h-2"></div>
+                <div class="p-6">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-book text-blue-600 dark:text-blue-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2">系统学习C++语法</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        按知识点分类学习C++基础语法，包含详细讲解、示例代码和练习题。
+                    </p>
+                    <a href="learning.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
+                        开始学习 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 在线编译器卡片 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-green-500 h-2"></div>
+                <div class="p-6">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-terminal text-green-600 dark:text-green-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2">在线编写和运行代码</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        无需安装编译器，直接在浏览器中编写、编译和运行C++代码，即时查看结果。
+                    </p>
+                    <a href="compiler.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
+                        立即尝试 <i class="fas fa-play ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 学习进度卡片 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-purple-500 h-2"></div>
+                <div class="p-6">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-purple-600 dark:text-purple-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2">追踪学习进度</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        记录已学习的知识点和完成的练习，查看学习进度，保持学习动力。
+                    </p>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-full h-4 mb-4">
+                        <div id="progress-bar" class="bg-purple-600 h-4 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400" id="progress-text">
+                        尚未开始学习
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学习路径区域 -->
+        <section class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">C++学习路径</h2>
+            
+            <div class="relative">
+                <!-- 路径线 -->
+                <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                
+                <!-- 路径步骤 -->
+                <div class="space-y-8">
+                    <!-- 步骤1 -->
+                    <div class="flex">
+                        <div class="relative">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
+                                1
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">C++基础入门</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">
+                                了解C++的历史、特点和应用场景，学习基本的程序结构和语法规则。
+                            </p>
+                            <a href="learning.html#basics" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤2 -->
+                    <div class="flex">
+                        <div class="relative">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
+                                2
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">变量、数据类型与运算符</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">
+                                学习C++中的变量声明和使用，基本数据类型，以及各种运算符的使用方法。
+                            </p>
+                            <a href="learning.html#variables" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤3 -->
+                    <div class="flex">
+                        <div class="relative">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
+                                3
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">流程控制</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">
+                                掌握条件语句（if-else）、循环语句（for、while、do-while）和跳转语句（break、continue、goto）。
+                            </p>
+                            <a href="learning.html#control-flow" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤4 -->
+                    <div class="flex">
+                        <div class="relative">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
+                                4
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">函数</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">
+                                学习函数的定义、声明、调用，以及函数参数、返回值、函数重载等概念。
+                            </p>
+                            <a href="learning.html#functions" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤5 -->
+                    <div class="flex">
+                        <div class="relative">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
+                                5
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">数组与指针</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">
+                                掌握数组的定义和使用，指针的概念、声明和操作，以及数组与指针的关系。
+                            </p>
+                            <a href="learning.html#arrays-pointers" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤6 -->
+                    <div class="flex">
+                        <div class="relative">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center z-10 relative">
+                                6
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">类与对象</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">
+                                学习面向对象编程的基本概念，包括类的定义、对象的创建和使用、构造函数和析构函数等。
+                            </p>
+                            <a href="learning.html#classes-objects" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                开始学习 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特色功能区域 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">特色功能</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 特色1 -->
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-blue-600 dark:text-blue-400 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">在线编译器</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            直接在浏览器中编写、编译和运行C++代码，无需安装任何软件，即时查看执行结果。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 特色2 -->
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                        <i class="fas fa-book-open text-green-600 dark:text-green-400 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">系统学习路径</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            提供结构化的学习路径，从基础到进阶，循序渐进地学习C++编程知识。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 特色3 -->
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                        <i class="fas fa-pencil-alt text-purple-600 dark:text-purple-400 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">学习笔记</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            记录学习心得和重要知识点，方便复习和巩固所学内容。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 特色4 -->
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center">
+                        <i class="fas fa-question-circle text-yellow-600 dark:text-yellow-400 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">常见问题解答</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            收集和解答C++学习过程中的常见问题，帮助快速解决学习中遇到的困难。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 快速开始区域 -->
+        <section class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">准备好开始学习C++了吗？</h2>
+            <p class="mb-6 max-w-2xl mx-auto">
+                无论你是完全的编程初学者，还是想要学习C++的其他语言开发者，我们都能帮助你快速掌握C++编程技能。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="learning.html" class="bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-6 rounded-md transition-colors duration-200 flex items-center justify-center">
+                    <i class="fas fa-book mr-2"></i> 开始学习
+                </a>
+                <a href="compiler.html" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md transition-colors duration-200 flex items-center justify-center border border-white">
+                    <i class="fas fa-play mr-2"></i> 尝试编译器
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 关于我们 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">关于我们</h3>
+                    <p class="text-gray-400">
+                        C++学习站致力于为初学者提供高质量的C++编程学习资源，帮助更多人掌握编程技能。
+                    </p>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">首页</a></li>
+                        <li><a href="learning.html" class="text-gray-400 hover:text-white transition-colors duration-200">语法学习</a></li>
+                        <li><a href="compiler.html" class="text-gray-400 hover:text-white transition-colors duration-200">在线编译器</a></li>
+                        <li><a href="notes.html" class="text-gray-400 hover:text-white transition-colors duration-200">学习笔记</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors duration-200">常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 联系方式 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">联系方式</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <a href="mailto:contact@cpplearning.com" class="text-gray-400 hover:text-white transition-colors duration-200">contact@cpplearning.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-github mr-2 text-gray-400"></i>
+                            <a href="https://github.com/cpplearning" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200">GitHub</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 C++学习站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
